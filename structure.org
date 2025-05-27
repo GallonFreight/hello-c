@@ -1,0 +1,21 @@
+Structure of the book:
+
+* Introduction
+
+** A simple program
+
+** How to make your programs go
+
+** Formally describing enough of the language to explain the simple program
+
+* Learning the language
+Flesh out the formal description of C, adding grammatical constructions bit-by-bit, with full executable examples for each new construction. Continue until all non-deprecated constructions have examples and descriptions. (It may be worth making asides on deprecated constructions as well, but not worth worrying deeply about)
+
+I have in mind to structure this main section of the book with short, simple chapters: each consisting of an executable example and an explanation of the new syntax introduced. It is likely also worthwhile to have interstitials between certain chapters to review our overall knowledge of the language so far.
+
+Preprocessor instructions should not, I think, be counted as part of the language proper, but it is worth giving a description of them. This will be clearly separated to a section after the description of the language, to avoid the language seeming larger than it is and overwhelming the reader. Preprocessor instructions will be treated in far less detail than the language proper.
+
+* C in practice
+Examples in this section are motivated by showing what one might want to achieve in the C programming language and demonstrating and explaining the best coding standards. The Linux kernel should provide examples of most of the best practices you wish to promote.
+
+To make sure you provide best practices for as wide a variety of situations as possible, you could structure the sections on coding standards to mirror the structure of the grammar. Make sure to include best practices for preprocessor instructions and more meta concerns like project structure as well!

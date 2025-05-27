@@ -1,0 +1,6 @@
+hello-c
+
+
+Materials for a book describing the C language formally, with examples
+
+The principle behind the book is to give a top-down formal description of the C programming language while making sure to put enough executable code into the description to make the formal description easier to understand and the whole enterprise seem practical for computing
