@@ -3,8 +3,10 @@ Structure of the book:
 * Introduction
 
 ** A simple program
+Chapter consists of the text of the simplest program I could think of - the classic "hello, world" program
 
 ** How to make your programs go
+Instruct on most basic use case of gcc
 
 ** Formally describing enough of the language to explain the simple program
 
