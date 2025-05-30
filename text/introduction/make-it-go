@@ -1,0 +1,13 @@
+Refer to https://www.gnu.org/software/c-intro-and-ref/manual/html_node/Compile-Example.html for a simplified explanation of what compilation means
+
+Before we compile anything, we will want to create a directory in which to place our compiled executables. In the top-level directory of the hello-c repository, run the following command:
+	$ mkdir bin
+
+To specify the a name for our output executable we give gcc the -o option, followed by the desired filename. So working from the top-level directory of the hello-c repository, we run:
+	$ gcc examples/mono-file/simple-program.c -o bin/simple-program
+
+Now to execute our program, we simply type the full path to its executable:
+	$ bin/simple-program
+N.b. if you ever want to run an executable located in your working directory, simply typing its name will not work, since the shell will try to find an executable by that name in the system path instead of the local directory. To make sure you run the executable you want, you must specify that it is located in the present working directory as follows:
+	.../hello-c/bin$ ./simple-program
+
