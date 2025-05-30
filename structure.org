@@ -2,13 +2,14 @@ Structure of the book:
 
 * Introduction
 
-** A simple program
+** A Simple Program
 Chapter consists of the text of the simplest program I could think of - the classic "hello, world" program
 
-** How to make your programs go
+** Make It Go
 Instruct on most basic use case of gcc
 
-** Formally describing enough of the language to explain the simple program
+** A Formal Description
+Formally describing enough of the language to explain the simple program
 
 * Learning the language
 Flesh out the formal description of C, adding grammatical constructions bit-by-bit, with full executable examples for each new construction. Continue until all non-deprecated constructions have examples and descriptions. (It may be worth making asides on deprecated constructions as well, but not worth worrying deeply about)
