@@ -1,0 +1,9 @@
+In this guide we will concieve of a C program as being a sequence of TRANSLATION UNITs. TRANSLATION UNITs are not exactly the same as source files, since source files are transformed into TRANSLATION UNITs by the preprocessor. In this book, we will mostly think in terms of TRANSLATION UNITs rather than source files, except when explaining some action of the preprocessor.
+
+TRANSLATION UNITs are themselves sequences of EXTERNAL DECLARATIONs
+An EXTERNAL DECLARATION may be either a FUNCTION DEFINITION or a DECLARATION
+
+
+Bibliography:
+https://port70.net/%7Ensz/c/c89/c89-draft.html
+https://en.cppreference.com/w/c/language.html
