@@ -63,6 +63,8 @@ simple-program.c:
 
 simple-program.c:3-6:
 	FUNCTION DEFINITION
+	=	DECLARATION
+		COMPOUND STATEMENT
 
 simple-program.c:3:
 	DECLARATION
