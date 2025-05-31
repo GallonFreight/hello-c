@@ -1,7 +1,88 @@
 In this guide we will concieve of a C program as being a sequence of TRANSLATION UNITs. TRANSLATION UNITs are not exactly the same as source files, since source files are transformed into TRANSLATION UNITs by the preprocessor. In this book, we will mostly think in terms of TRANSLATION UNITs rather than source files, except when explaining some action of the preprocessor.
 
 TRANSLATION UNITs are themselves sequences of EXTERNAL DECLARATIONs
+
 An EXTERNAL DECLARATION may be either a FUNCTION DEFINITION or a DECLARATION
+
+A FUNCTION DEFINITION is either:
+	A (possibly empty) sequence of DECLARATION SPECIFIERs (with certain extra constraints) followed by a DECLARATOR
+	A (possibly empty) sequence of DECLARATIONs followed by a COMPOUND STATEMENT
+
+A DECLARATION is a (non-empty) sequence of DECLARATION SPECIFIERs followed by a (possibly empty) list of INIT DECLARATOR
+
+A DECLARATION SPECIFIER is one of the following:
+	"typedef"
+	"auto"/"register"/"static"/"extern"
+	TYPE SPECIFIER
+	"const"/"volatile"
+
+A TYPE SPECIFIER is one of the following:
+	"void"
+	"char"/"short"/"int"/"long"/"float"/"double"/"signed"/"unsigned"
+	STRUCT OR UNION SPECIFIER
+	ENUM SPECIFIER
+	TYPEDEF NAME
+
+An INIT DECLARATOR is either:
+	A DECLARATOR
+	A DECLARATOR, followed by "=", followed by an INITIALISER
+
+DECLARATORs are composed as follows:
+	The simplest DECLARATOR is a lone IDENTIFIER
+	More complex DECLARATORs may be built up by the following operations:
+		enclosing in parentheses
+		prepending by '*' and a (possibly empty) sequence of TYPE SPECIFIERS
+		(operations valid only for operators whose first character is not '*'):
+			appending with '[', followed by an optional CONSTANT EXPRESSION, followed by ']'
+			appending with '(', followed by an optional sequence of IDENTIFIERS, followed by ')' (N.b. this is old-style function syntax and is deprecated)
+			appending with '(', followed by a sequence of PARAMETER DECLARATIONs separated by commas and optionally terminated with ", ...", followed by ')'
+
+----- Suspect I may have made a mistake with the below section -----
+================================================================================
+
+A PARAMETER DECLARATION is a sequence of DECLARATION SPECIFIERS followed by either:
+	A single DECLARATOR
+	An optional ABSTRACT DECLARATOR
+
+An ABSTRACT DECLARATOR is either:
+	A POINTER
+	An optional POINTER followed by a DIRECT ABSTRACT DECLARATOR
+
+A DIRECT ABSTRACT DECLARATOR has one of the following forms:
+	"(<DIRECT ABSTRACT DECLARATOR>)"
+	An optional DIRECT ABSTRACT DECLARATOR followed by either:
+		'[', followed by an optional CONSTANT EXPRESSION, followed by ']'
+		'(', followed by an optional PARAMETER TYPE LIST, followed by ')'
+
+================================================================================
+
+
+Structure of simple-program.c:
+simple-program.c:
+	TRANSLATION UNIT
+
+simple-program.c:3-6:
+	FUNCTION DEFINITION
+
+simple-program.c:3:
+	DECLARATION
+	= <DECLARATION SPECIFIER>	<INIT DECLARATOR>
+	= void				DECLARATOR
+
+----- Suspect I may have made a mistake with the below section -----
+================================================================================
+
+simple-program.c:3:	... main(void)
+	DECLARATOR
+	= <IDENTIFIER>(<PARAMETER DECLARATION>)
+	= main	      (<ABSTRACT DECLARATOR>)
+
+simple-program.c:3:	...(void)
+	(<ABSTRACT DECLARATOR>)
+	= (<DIRECT ABSTRACT DECLARATOR>)
+	= (
+
+================================================================================
 
 
 Bibliography:
