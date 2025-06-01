@@ -1,3 +1,5 @@
+//TODO: go through your formulae and make sure you have properly detailed how they treat whitespace and separators
+
 In this guide we will concieve of a C program as being a sequence of TRANSLATION UNITs. TRANSLATION UNITs are not exactly the same as source files, since source files are transformed into TRANSLATION UNITs by the preprocessor. In this book, we will mostly think in terms of TRANSLATION UNITs rather than source files, except when explaining some action of the preprocessor.
 
 TRANSLATION UNITs are themselves sequences of EXTERNAL DECLARATIONs
@@ -41,6 +43,79 @@ A PARAMETER DECLARATION is a (non-empty) sequence of DECLARATION SPECIFIERS foll
 	A single DECLARATOR
 	An optional ABSTRACT DECLARATOR
 
+A COMPOUND STATEMENT is '{', followed by a (possibly empty) sequence of DECLARATIONs, followed by a (possibly empty) sequence of STATEMENTs, followed by '}'
+
+A STATEMENT is any of the following:
+	LABELED STATEMENT
+	COMPOUND STATEMENT
+	EXPRESSION STATEMENT
+	SELECTION STATEMENT
+	ITERATION STATEMENT
+	JUMP STATEMENT
+
+An EXPRESSION STATEMENT is an optional EXPRESSION followed by ';'
+
+EXPRESSIONs are composed as follows:
+	IDENTIFIERs, CONSTANTs and STRINGs are EXPRESSIONs
+	'(' followed by an EXPRESSION followed by ')' is an EXPRESSION
+
+	POSTFIX EXPRESSIONs are any of the above defined EXPRESSIONs and:
+		A POSTFIX EXPRESSION followed by '[' followed by an EXPRESSION followed by ']'
+		A POSTFIX EXPRESSION followed by '(' followed by an optional ARGUMENT EXPRESSION LIST followed by ')'
+		A POSTFIX EXPRESSION followed by '.' followed by an IDENTIFIER
+		A POSTFIX EXPRESSION followed by "->" followed by an IDENTIFIER
+		A POSTFIX EXPRESSION followed by "++"
+		A POSTFIX EXPRESSION followed by "--"
+
+	UNARY EXPRESSIONs are any of the above defined EXPRESSIONs and:
+		"++" followed by a UNARY EXPRESSION
+		"--" followed by a UNARY EXPRESSION
+		A UNARY OPERATOR followed by a CAST EXPRESSION
+		"sizeof" followed by a UNARY EXPRESSION
+		"sizeof" followed by '(' followed by a TYPE NAME followed by ')'
+
+	CAST EXPRESSIONs are any of the above defined EXPRESSIONs and:
+		'(' followed by TYPE NAME followed by ')' followed by CAST EXPRESSION
+
+	MULTIPLICATIVE EXPRESSIONs are any of the above defined EXPRESSIONs and:
+		A MULTIPLICATIVE EXPRESSION followed by '*' followed by a CAST EXPRESSION
+		A MULTIPLICATIVE EXPRESSION followed by '/' followed by a CAST EXPRESSION
+		A MULTIPLICATIVE EXPRESSION followed by '%' followed by a CAST EXPRESSION
+
+	ADDITIVE EXPRESSIONs are any of the above defined EXPRESSIONs and:
+		An ADDITIVE EXPRESSION followed by '+' followed by a MULTIPLICATIVE EXPRESSION
+		An ADDITIVE EXPRESSION followed by '-' followed by a MULTIPLICATIVE EXPRESSION
+
+	SHIFT EXPRESSIONs are any of the above defined EXPRESSIONs and:
+		A SHIFT EXPRESSION followed by "<<" followed by an ADDITIVE EXPRESSION
+		A SHIFT EXPRESSION followed by ">>" followed by an ADDITIVE EXPRESSION
+
+	RELATIONAL EXPRESSIONs are any of the above defined EXPRESSIONs and:
+		A RELATIONAL EXPRESSION followed by '<' followed by a SHIFT EXPRESSION
+		A RELATIONAL EXPRESSION followed by '>' followed by a SHIFT EXPRESSION
+		A RELATIONAL EXPRESSION followed by "<=" followed by a SHIFT EXPRESSION
+		A RELATIONAL EXPRESSION followed by ">=" followed by a SHIFT EXPRESSION
+
+	EQUALITY EXPRESSIONs are any of the above defined EXPRESSIONs and:
+		An EQUALITY EXPRESSION followed by "==" followed by a RELATIONAL EXPRESSION
+		An EQUALITY EXPRESSION followed by "!=" followed by a RELATIONAL EXPRESSION
+
+	AND EXPRESSIONs are any of the above expressions or an AND EXPRESSION followed by '&' followed by an EQUALITY EXPRESSION
+
+	EXCLUSIVE OR EXPRESSIONs are any of the above expressions or an EXCLUSIVE OR EXPRESSION followed by '^' followed by an AND EXPRESSION
+
+	INCLUSIVE OR EXPRESSIONs are any of the above expressions or an INCLUSIVE OR EXPRESSION followed by '|' followed by an EXCLUSIVE OR EXPRESSION
+
+	LOGICAL AND EXPRESSIONs are any of the above expressions or a LOGICAL AND EXPRESSION followed "&&" followed by an INCLUSIVE OR EXPRESSION
+
+	LOGICAL OR EXPRESSIONs are any of the above expressions or a LOGICAL OR EXPRESSION followed by "||" followed by a LOGICAL AND EXPRESSION
+
+	CONDITIONAL EXPRESSIONs are any of the above expressions or a LOGICAL OR EXPRESSION followed by '?' followed by an EXPRESSION followed by ':' followed by a CONDITIONAL EXPRESSION
+
+	ASSIGNMENT EXPRESSIONs are any of the above expressions or a UNARY EXPRESSION followed by an ASSIGNMENT OPERATOR followed by an ASSIGNMENT EXPRESSION
+
+	In addition to all the above, EXPRESSIONs may be formed as an EXPRESSION followed by ',' followed by an ASSIGNMENT EXPRESSION
+
 
 Structure of simple-program.c:
 simple-program.c:
@@ -52,7 +127,6 @@ simple-program.c:3-6:
 		COMPOUND STATEMENT
 
 simple-program.c:3:	void main(void)
-
 	void main(void)
 	= DECLARATION
 	= <DECLARATION SPECIFIER>	<INIT DECLARATOR>
@@ -60,13 +134,11 @@ simple-program.c:3:	void main(void)
 	= void				<IDENTIFIER>(<PARAMETER DECLARATIONs>)
 
 simple-program.c:3:	... main(void)
-
 	main(void)
 	= <IDENTIFIER>(<PARAMETER DECLARATIONs>)
 	= main	      (<PARAMETER DECLARATION>)
 
 simple-program.c:3:	...(void)
-
 	void
 	= PARAMETER DECLARATION
 	= <DECLARATION SPECIFIERs>
@@ -74,7 +146,11 @@ simple-program.c:3:	...(void)
 	= <TYPE SPECIFIER>
 	= void
 
+simple-program.c:4-6:
+	COMPOUND STATEMENT
+
 
 Bibliography:
 https://port70.net/%7Ensz/c/c89/c89-draft.html
 https://en.cppreference.com/w/c/language.html
+K&R2e:Section A13
