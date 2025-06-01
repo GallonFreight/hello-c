@@ -39,6 +39,14 @@ DECLARATORs are composed as follows:
 			appending with '(', followed by an optional sequence of IDENTIFIERS, followed by ')' (N.b. this is old-style function syntax and is deprecated)
 			appending with '(', followed by a sequence of PARAMETER DECLARATIONs separated by commas and optionally terminated with ", ...", followed by ')'
 
+An IDENTIFIER is a NONDIGIT followed by a sequence of DIGITs and NONDIGITs
+
+A NONDIGIT is one of the following characters:
+	_ a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+
+A DIGIT is one of the following characters:
+	0 1 2 3 4 5 6 7 8 9
+
 A PARAMETER DECLARATION is a (non-empty) sequence of DECLARATION SPECIFIERS followed by either:
 	A single DECLARATOR
 	An optional ABSTRACT DECLARATOR
@@ -56,8 +64,9 @@ A STATEMENT is any of the following:
 An EXPRESSION STATEMENT is an optional EXPRESSION followed by ';'
 
 EXPRESSIONs are composed as follows:
-	IDENTIFIERs, CONSTANTs and STRINGs are EXPRESSIONs
-	'(' followed by an EXPRESSION followed by ')' is an EXPRESSION
+	PRIMARY EXPRESSIONs are:
+		IDENTIFIERs, CONSTANTs or STRINGs
+		'(' followed by an EXPRESSION followed by ')'
 
 	POSTFIX EXPRESSIONs are any of the above defined EXPRESSIONs and:
 		A POSTFIX EXPRESSION followed by '[' followed by an EXPRESSION followed by ']'
@@ -116,6 +125,24 @@ EXPRESSIONs are composed as follows:
 
 	In addition to all the above, EXPRESSIONs may be formed as an EXPRESSION followed by ',' followed by an ASSIGNMENT EXPRESSION
 
+An ARGUMENT EXPRESSION LIST is a sequence of ASSIGNMENT EXPRESSIONs separated by commas
+
+A STRING is an optional 'L' followed by '"' followed by an optional sequence of S CHARs followed by '"'
+An S CHAR is either:
+	An ESCAPE SEQUENCE
+	Any member of the source character set except '"', '\' or a newline character
+
+An ESCAPE SEQUENCE is one of:
+	\' \" \? \\ \a \b \f \n \r \t \v
+	'\' followed by between one and three OCTAL DIGITs
+	"\x" followed by a sequence of HEXADECIMAL DIGITs
+
+An OCTAL DIGIT is one of:
+	0 1 2 3 4 5 6 7
+
+A HEXADECIMAL DIGIT is one of:
+	0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F
+
 
 Structure of simple-program.c:
 simple-program.c:
@@ -148,6 +175,23 @@ simple-program.c:3:	...(void)
 
 simple-program.c:4-6:
 	COMPOUND STATEMENT
+	= {
+		STATEMENT
+	  }
+
+simple-program.c:5:	printf("Hello, world!");
+	STATEMENT
+	= EXPRESSION STATEMENT
+	= <EXPRESSION>;
+	= <POSTFIX EXPRESSION>;
+	= <POSTFIX EXPRESSION>(<ARGUMENT EXPRESSION LIST>);
+	= <IDENTIFIER>(<ASSIGNMENT EXPRESSION>);
+	= printf(<PRIMARY EXPRESSION>);
+
+simple-program.c:5: ..."Hello, world!"...
+	PRIMARY EXPRESSION
+	= STRING
+	= "Hello, world!"
 
 
 Bibliography:
