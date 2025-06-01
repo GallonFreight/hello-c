@@ -17,6 +17,9 @@ Explain what simple-program.c does and how it does it
 ** Introducing Style
 Explain style conventions used in simple-program.c
 
+** Section Review
+Bring together all information from the introduction that is directly relevant to simple-program.c to explain it concisely
+
 * Learning the language
 Flesh out the formal description of C, adding grammatical constructions bit-by-bit, with full executable examples for each new construction. Continue until all non-deprecated constructions have examples and descriptions. (It may be worth making asides on deprecated constructions as well, but not worth worrying deeply about)
 
