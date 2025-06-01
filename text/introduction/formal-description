@@ -179,7 +179,7 @@ simple-program.c:4-6:
 		STATEMENT
 	  }
 
-simple-program.c:5:	printf("Hello, world!");
+simple-program.c:5:	printf("Hello, world!\n");
 	STATEMENT
 	= EXPRESSION STATEMENT
 	= <EXPRESSION>;
@@ -188,10 +188,10 @@ simple-program.c:5:	printf("Hello, world!");
 	= <IDENTIFIER>(<ASSIGNMENT EXPRESSION>);
 	= printf(<PRIMARY EXPRESSION>);
 
-simple-program.c:5: ..."Hello, world!"...
+simple-program.c:5: ..."Hello, world!\n"...
 	PRIMARY EXPRESSION
 	= STRING
-	= "Hello, world!"
+	= "Hello, world!\n"
 
 
 Bibliography:
