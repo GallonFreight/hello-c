@@ -1,0 +1,16 @@
+Semantics of DECLARATORs:
+Notice that the processes for building up DECLARATORs resemble those for building up certain POSTFIX EXPRESSIONS. To start with, a lone IDENTIFIER can be either a DECLARATOR or a POSTFIX EXPRESSION(specifically, a PRIMARY EXPRESSION).
+A DECLARATOR enclosed in parentheses yields another DECLARATOR. Likewise, a POSTFIX EXPRESSION(since it is a type of EXPRESSION) may be enclosed in parentheses to yield a PRIMARY EXPRESSION(which is a type of POSTFIX EXPRESSION).
+A POSTFIX EXPRESSION followed by '[' followed by an EXPRESSION followed by ']' is a POSTFIX EXPRESSION. Likewise, a DECLARATOR followed by '[' followed by a CONSTANT(which is a type of EXPRESSION) followed by ']' is a DECLARATOR.
+A DECLARATOR followed by '(' followed by a sequence of PARAMETER DECLARATIONs followed by ')' is a DECLARATOR. Likewise, a POSTFIX EXPRESSION followed by '(' followed by an optional ARGUMENT EXPRESSION LIST followed by ')' is a POSTFIX EXPRESSION.
+	Where an ARGUMENT EXPRESSION LIST is a sequence of ASSIGNMENT EXPRESSIONs separated by commas and each PARAMETER DECLARATION ends in either a DECLARATOR(which, as we have seen, can correspond to a POSTFIX EXPRESSION, which is a type of ASSIGNMENT EXPRESSION) or an optional ABSTRACT DECLARATOR.
+	N.b. Working out how ABSTRACT DECLARATORs correspond is a bit beyond me at this point, so I will come back to this
+N.b. there are lots of more complicated constructions of DECLARATORS and EXPRESSIONS at whose correspondences you have not yet hinted, but the suggestions you've made here should be a good point from which to start re-drafting
+
+
+Semantics of simple-program.c:
+simple-program.c:1:	#include <stdio.h>
+	Preprocessor directive: I won't go into detail on preprocessor directives here since I'm mostly interested in treating C programs at the level of TRANSLATION UNITs. It will suffice for now to say that the effect of an "#include" directive is to tell the preprocessor to replace the line in which occurs with the content of the text file whose name follows "#include".
+
+
+Bibliography:
