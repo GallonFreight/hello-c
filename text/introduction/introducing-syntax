@@ -10,7 +10,7 @@ A FUNCTION DEFINITION is either:
 	A (possibly empty) sequence of DECLARATION SPECIFIERs (with certain extra constraints) followed by a DECLARATOR
 	A (possibly empty) sequence of DECLARATIONs followed by a COMPOUND STATEMENT (N.b. the declarations here may not contain initialisations)
 
-A DECLARATION is a (non-empty) sequence of DECLARATION SPECIFIERs followed by a (possibly empty) list of INIT DECLARATOR
+A DECLARATION is a (non-empty) sequence of DECLARATION SPECIFIERs followed by a (possibly empty) list of INIT DECLARATORs
 
 A DECLARATION SPECIFIER is one of the following:
 	"typedef"
