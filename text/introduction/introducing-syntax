@@ -9,6 +9,7 @@ An EXTERNAL DECLARATION may be either a FUNCTION DEFINITION or a DECLARATION
 A FUNCTION DEFINITION is either:
 	A (possibly empty) sequence of DECLARATION SPECIFIERs (with certain extra constraints) followed by a DECLARATOR (N.b. this kind of FUNCTION DEFINITION has the same structure as a DECLARATION, except that its INIT DECLARATOR may not contain an INITIALISER)
 	A (possibly empty) sequence of DECLARATIONs followed by a COMPOUND STATEMENT (N.b. the declarations here may not contain initialisations)
+	N.b. K&R2E gives a different format to the version above which is from the draft spec; consider giving that a look in case it clears things up
 
 A DECLARATION is a (non-empty) sequence of DECLARATION SPECIFIERs followed by a (possibly empty) list of INIT DECLARATORs
 
