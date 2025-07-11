@@ -1,3 +1,13 @@
+Semantics of FUNCTION DEFINITIONs(second kind: those including a COMPOUND STATEMENT):
+Treating the case where there is only one DECLARATION:
+Recall the syntax of a DECLARATION: <DECLARATION SPECIFIERs> <INIT DECLARATORs>
+In this case, the declaration may not contain initialisations, so we can simplify to: <DECLARATION SPECIFIERs> <DECLARATORs>
+Treating the case where there is only one DECLARATOR we have: <DECLARATION SPECIFIERs> <DECLARATOR>
+From K&R2E(capitalisation mine): "The DECLARATOR in a FUNCTION DECLARATION must specify explicitly that the declared IDENTIFIER has function type"
+This means that it must be of the form (new syntax version): <DECLARATOR (not starting with '*')> (<PARAMETER DECLARATIONs>)
+This DECLARATOR must be an identifier(optionally enclosed by parentheses), and it specifies the name of the function being defined
+For the time being, we will consider the case where the PARAMETER DECLARATIONs consist solely of the text "void" ("void" being a lone DECLARATION SPECIFIER, specifically a TYPE SPECIFIER)
+
 Semantics of DECLARATORs:
 Notice that the processes for building up DECLARATORs resemble those for building up certain POSTFIX EXPRESSIONS. To start with, a lone IDENTIFIER can be either a DECLARATOR or a POSTFIX EXPRESSION(specifically, a PRIMARY EXPRESSION).
 A DECLARATOR enclosed in parentheses yields another DECLARATOR. Likewise, a POSTFIX EXPRESSION(since it is a type of EXPRESSION) may be enclosed in parentheses to yield a PRIMARY EXPRESSION(which is a type of POSTFIX EXPRESSION).
@@ -11,6 +21,11 @@ N.b. there are lots of more complicated constructions of DECLARATORS and EXPRESS
 Semantics of simple-program.c:
 simple-program.c:1:	#include <stdio.h>
 	Preprocessor directive: I won't go into detail on preprocessor directives here since I'm mostly interested in treating C programs at the level of TRANSLATION UNITs. It will suffice for now to say that the effect of an "#include" directive is to tell the preprocessor to replace the line in which occurs with the content of the text file whose name follows "#include".
+	From c89-draft.html: "A source file together with all the headers and source files included via the preprocessing directive #include , less any source lines skipped by any of the conditional inclusion preprocessing directives, is called a translation unit."
+	i.e. the result of the preprocessor transforming a source file is that the transformed file is now a TRANSLATION UNIT.
 
+simple-program.c:3-6:
+	FUNCTION DEFINITION:
 
 Bibliography:
+https://port70.net/%7Ensz/c/c89/c89-draft.html
